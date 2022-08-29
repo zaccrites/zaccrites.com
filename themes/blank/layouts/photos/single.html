@@ -1,0 +1,34 @@
+{{ define "main" }}
+<div class="row">
+    {{ partial "common/breadcrumbs.html" . }}
+</div>
+<h1 class="display-4">
+    <a class="text-decoration-none" href="{{ .Permalink }}">{{ .Title }}</a>
+</h1>
+{{ with .Description }}
+<p class="lead">{{ . }}</p>
+{{ end }}
+
+<p>{{ partial "photos/photo_date_all.html" . }}</p>
+{{ with .Params.Tags }}
+<hr class="mb-1">
+{{ partial "common/tag_list.html" . }}
+<hr class="mt-1">
+{{ end }}
+
+{{ $image := .Parent.Resources.GetMatch .Params.Link }}
+<article>
+    <div>
+        <a href="{{ $image.Permalink }}">
+            <img class="img-fluid" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ .Description }}">
+        </a>
+    </div>
+
+    {{ with .Content }}
+    <hr>
+    {{ . | markdownify }}
+    {{ end }}
+
+</article>
+
+{{ end }}

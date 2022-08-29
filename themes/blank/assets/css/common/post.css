@@ -1,0 +1,43 @@
+.article-icon {
+    text-align: left;
+}
+
+.article-icon i {
+    font-size: 4em;
+}
+
+@media (min-width: 576px) {
+    .article-icon i {
+        font-size: 6em;
+    }
+}
+
+@media (min-width: 768px) {
+    .article-icon {
+        position: relative;
+    }
+
+    .article-icon>div {
+        direction: rtl;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
+    .article-icon i {
+        font-size: 7em;
+    }
+}
+
+@media (min-width: 1200px) {
+    .article-icon i {
+        font-size: 8em;
+    }
+}
+
+/* force vertical spacing even with no description */
+.post-description-spacing:after {
+    content: "";
+    display: inline-block;
+    width: 0px;
+}

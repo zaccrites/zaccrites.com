@@ -1,0 +1,11 @@
+{{ define "main" }}
+<main>
+    <h1 class="display-4"><i class="fa-solid fa-bars-staggered"></i> {{ .Title }}</h1>
+    <p class="lead">{{ .Description }}</p>
+    {{ .Content }}
+
+    {{ range .Pages }}
+    {{ .Render "summary" }}
+    {{ end }}
+</main>
+{{ end }}

@@ -1,0 +1,22 @@
+<header>
+    <nav class="navbar navbar-expand-sm navbar-light bg-body">
+        <div class="container-sm">
+            <a class="navbar-brand" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                {{ with .Site.Menus.main }}
+                <ul class="navbar-nav ms-auto">
+                    {{ range . }}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ .URL | relURL }}">{{ .Name }}</a>
+                    </li>
+                    {{ end }}
+                </ul>
+                {{ end }}
+            </div>
+        </div>
+    </nav>
+</header>

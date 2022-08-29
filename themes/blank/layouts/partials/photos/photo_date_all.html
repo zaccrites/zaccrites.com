@@ -1,0 +1,7 @@
+<span class="text-secondary">
+    {{ partial "common/calendar_date.html" . }}
+    {{ with .Params.PhotoDate }}
+        &middot;
+        {{ partial "photos/photo_date.html" . }}
+    {{ end }}
+</span>

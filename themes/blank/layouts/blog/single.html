@@ -1,0 +1,40 @@
+{{ define "main" }}
+<article>
+    <div class="row">
+        {{ partial "common/breadcrumbs.html" . }}
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-9 col-lg-10">
+            <h1 class="display-4">
+                <a class="text-decoration-none" href="{{ .Permalink }}">{{ .Title | markdownify }}</a>
+                {{ partial "common/draft.html" . }}
+            </h1>
+        <p class="lead mb-2 {{ if and (not .Description) .Params.Icon }}post-description-spacing{{ end }}">{{ .Description | markdownify }}</p>
+        <p class="mb-1">{{ partial "blog/post_date_and_info.html" . }}</p>
+        </div>
+        {{- with .Params.Icon }}
+        <div class="col-sm-12 col-md-3 col-lg-2 article-icon order-first order-md-last">
+            <div class="me-3 mb-1">
+                <i class="{{ . }}"></i>
+            </div>
+        </div>
+        {{- end }}
+    </div>
+
+    <hr class="mt-2 mb-1">
+    {{- with .Params.Tags }}
+    {{ partial "common/tag_list.html" . }}
+    {{- end }}
+    <hr class="mt-1">
+
+    {{ partial "blog/series_notice.html" . }}
+    <div>
+        {{ .Content }}
+    </div>
+    {{ partial "blog/series_notice.html" . }}
+
+</article>
+
+
+
+{{ end }}

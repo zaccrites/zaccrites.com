@@ -1,0 +1,29 @@
+{{ if .Params.series }}
+{{ $seriesName := index .Params.series 0 }}
+{{ $seriesPermalink := printf "/series/%s" $seriesName }}
+{{ $seriesTitle := ($.Site.GetPage $seriesPermalink).Title }}
+{{ $series := index .Site.Taxonomies.series $seriesName }}
+<p>
+    This article is part of a series: <strong><a class="text-decoration-none" href="{{ $seriesPermalink }}">{{ $seriesTitle }}</a></strong>
+</p>
+{{- end }}
+
+{{- /*
+<!-- <strong>Series: <a href="{{ $seriesPermalink }}">{{ $seriesTitle }}</a></strong> -->
+<!-- https://digitaldrummerj.me/hugo-post-series/ -->
+<!--<ul style="list-style: none;">-->
+<ol>
+  {{ range sort $series.Pages "Date" }}
+  <li>
+    {{ if eq .Permalink $.Page.Permalink }}
+    <strong>
+    {{ end }}
+    <a href="{{ .Permalink }}">{{ .LinkTitle }}</a> [{{ .Date.Format "02 Jan 2006" }}]
+    {{ if eq .Permalink $.Page.Permalink }}
+    </strong>
+    {{ end }}
+  </li>
+  {{- end }}
+</ol>
+<hr>
+*/}}

@@ -1,0 +1,47 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+{{- with .Site.Params.SiteDescription }}<meta name="description" content="{{ . }}">{{ end }}
+{{ with .Site.Params.SiteAuthor }}<meta name="author" content="{{ . }}">{{ end }}
+
+{{/* CSS */}}
+{{- $bootstrap := (resources.Get "css/core/bootstrap.css") -}}
+{{- $bootstrapOverrides := (resources.Get "css/core/bootstrap_overrides.css") -}}
+{{- $common := (resources.Match "css/common/*.css") | resources.Concat "assets/css/common.css" -}}
+{{- $core := (slice $bootstrap $bootstrapOverrides $common) | resources.Concat "assets/css/core.css" | resources.Minify -}}
+{{- $extended := (resources.Match "css/extended/*.css") | resources.Concat "assets/css/extended.css" | resources.Minify }}
+{{- $stylesheet := (slice $core $extended) | resources.Concat "assets/css/stylesheet.css" }}
+<link rel="stylesheet" href="{{ $stylesheet.RelPermalink }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+{{- /* KaTeX */}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+<!-- <style>.katex {font-size: 1.3em !important; }</style> -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+    renderMathInElement(document.body, {
+        delimiters: [
+            {{- if not .Params.DisableDollarMath -}}
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false },
+            {{- end }}
+            { left: "\\[", right: "\\]", display: true },
+            { left: "\\(", right: "\\)", display: false },
+        ],
+        throwOnError: false,
+    });
+});
+</script>
+
+{{- /* Links */}}
+<link rel="canonical" href="{{ .Permalink }}">
+{{- /* FUTURE: rel="next" and rel="prev" links for part1, part2, etc. posts */}}
+
+{{- with .OutputFormats.Get "RSS" -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
+{{- end }}
+
+<title>{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>

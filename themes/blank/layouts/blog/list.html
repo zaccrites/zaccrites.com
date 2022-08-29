@@ -1,0 +1,13 @@
+{{ define "main" }}
+<main>
+    <div class="row">
+        {{ partial "common/breadcrumbs.html" . }}
+    </div>
+    <h1 class="display-4">{{ .Title }}</h1>
+    {{ .Content }}
+    <p>{{ len .Pages }} article{{ if ne (len .Pages) 1 }}s{{ end }}</p>
+    {{ range .Pages }}
+        {{ .Render "summary" }}
+    {{ end }}
+</main>
+{{ end }}

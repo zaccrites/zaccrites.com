@@ -1,0 +1,24 @@
+{{- if .IsPage }}
+{{- if eq .Type "blog" }}
+<p class="text-center1">
+    This work is licensed under a
+    <a rel="license" href="http://creativecommons.org/licenses/by/4.0">Creative Commons Attribution 4.0 International License</a>.
+    <br>
+    <a href="http://creativecommons.org/licenses/by/4.0" class="text-decoration-none display-6">
+        <i class="fa-brands fa-creative-commons"></i>
+        <i class="fa-brands fa-creative-commons-by"></i>
+    </a>
+</p>
+{{- else if eq .Type "photos" }}
+<p class="text-center">
+    This work is licensed under a
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    <br>
+    <a class="text-decoration-none display-6" href="http://creativecommons.org/licenses/by-nc/4.0">
+        <i class="fa-brands fa-creative-commons"></i>
+        <i class="fa-brands fa-creative-commons-by"></i>
+        <i class="fa-brands fa-creative-commons-nc"></i>
+    </a>
+</p>
+{{- end }}
+{{- end }}

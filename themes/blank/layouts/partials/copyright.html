@@ -1,0 +1,12 @@
+<p class="text-center mb-1">
+    &copy;
+    {{ .Site.Params.CopyrightStartYear }}
+    {{- if gt now.Year .Site.Params.CopyrightStartYear }}
+    &ndash; {{ now.Year }}
+    {{- end }}
+    {{- if .Site.Params.CopyrightLink }}
+    <a href="{{ .Site.Params.CopyrightLink }}">{{ .Site.Params.CopyrightName }}</a>
+    {{- else }}
+    {{ .Site.Params.CopyrightName }}
+    {{- end }}
+</p>

@@ -1,0 +1,31 @@
+<hr>
+<article>
+    <h2>
+        <a class="text-decoration-none" href="{{ .Permalink }}">{{ .Title }}</a>
+    </h2>
+    {{ with .Description }}
+    <p class="lead mb-2">{{ . }}</p>
+    {{ end }}
+
+    {{- $image := .Parent.Resources.GetMatch .Params.Link }}
+    {{- if .IsPage }}
+    <p>{{ partial "photos/photo_date_all.html" . }}</p>
+    {{- else }}
+    <p class="lead mb-2">{{ len .Pages }} photo{{ if ne 1 (len .Pages) }}s{{ end }}</p>
+    {{- $image = .Resources.GetMatch .Params.Link }}
+    {{- end }}
+
+    {{- if $image }}
+    {{- $image := $image.Resize (printf "%dx" (default 500 $.Site.Params.PhotoThumbnailWidth)) }}
+    <div>
+        <a href="{{ .Permalink }}">
+            <img class="img-thumbnail" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="{{ .Description }}">
+        </a>
+    </div>
+
+    {{ with .Params.Tags }}
+    {{ partial "common/tag_list.html" . }}
+    {{ end }}
+
+    {{- end }}
+</article>

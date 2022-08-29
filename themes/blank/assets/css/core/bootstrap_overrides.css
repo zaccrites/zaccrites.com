@@ -1,0 +1,12 @@
+/* These changes should probably be made directly to bootstrap.css,
+but I figure at some point I'll just redo the CSS myself anyway
+and I'd like to document places I diverged from the default theme. */
+
+a {
+    color: black !important;
+}
+
+/* img {
+    width: 100%;
+    height: auto;
+} */

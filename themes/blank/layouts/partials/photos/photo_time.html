@@ -1,0 +1,2 @@
+{{- $dt := time . -}}
+<time datetime="{{ $dt.Format site.Params.PhotoDatetimeFormatMachine }}" title="Taken {{ $dt.Format site.Params.PhotoDatetimeFormatHuman }}">{{ $dt.Format site.Params.PhotoDateFormatHuman }}</time>

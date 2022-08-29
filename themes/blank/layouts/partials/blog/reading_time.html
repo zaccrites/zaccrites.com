@@ -1,0 +1,2 @@
+{{- $minutes := default .ReadingTime .Params.ReadingTime -}}
+<span title="Reading time: {{ $minutes }} minute{{ if ne $minutes 1 }}s{{ end }}"><i class="fa-regular fa-clock"></i> {{ $minutes }} min</span>

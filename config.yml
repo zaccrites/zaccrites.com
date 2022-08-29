@@ -1,0 +1,119 @@
+baseURL: https://zaccrites.com
+languageCode: en-us
+title: Crites Talks
+
+theme: blank
+
+permalinks:
+  blog: blog/:year/:month/:day/:title
+
+taxonomies:
+  tag: tags
+  # category: categories
+  series: series
+
+# https://stackoverflow.com/questions/63198652/hugo-shortcode-ignored-saying-raw-html-omitted
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+# https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-features/
+params:
+
+  MainSections:
+    - blog
+    # - photos
+
+  HomeIcons:
+    - Icon: fa-brands fa-git-alt
+      Title: Programming
+      Link: /tags/programming
+    - Icon: fa-solid fa-person-skiing
+      Title: Skiing  # TODO: Make photo page of skiing pictures
+      Link: /tags/skiing/
+    - Icon: fa-solid fa-person-hiking
+      Title: Hiking
+      Link: /tags/hiking/
+    - Icon: fa-solid fa-guitar
+      Title: Guitar
+    # - Icon: fa-solid fa-camera
+    #   Title: Photography
+    #   Link: /photos/
+
+  # HomePageTitle: Crites Talks
+  HomePageDescription: Writing about software design, electronics, physics, and more
+
+  HomePageLocation: Salt Lake City, UT
+  HomePageLocationIcon: fa-solid fa-mountain-city
+
+  HomePageSocialIcons:
+    # - Title: "e-mail: zac@criteshouse.com"
+    #   Link: mailto:zac@criteshouse.com
+    #   Icon: fa-solid fa-envelope
+    - Title: LinkedIn
+      Link: https://www.linkedin.com/in/zachary-crites/
+      Icon: fa-brands fa-linkedin-in
+    - Title: GitHub
+      Link: https://github.com/zaccrites
+      Icon: fa-brands fa-github
+
+  SiteDescription: "TODO: Site Description"
+  SiteAuthor: Zachary Crites
+  SiteHomePicture: "images/home/brighton_ski_self.jpg"
+
+  PostDateFormatHuman: "January 2, 2006"
+  PostDatetimeFormatHuman: "January 2, 2006 3:04 PM"
+  PostDatetimeFormatMachine: "2006-01-02"
+
+  PhotoDateFormatHuman: "January 2, 2006"
+  PhotoDatetimeFormatHuman: "January 2, 2006 3:04 PM"
+  PhotoDatetimeFormatMachine: "2006-01-02T15:04:05"
+
+  PhotoThumbnailWidth: 300
+
+
+  CopyrightStartYear: 2022
+  CopyrightName: Zachary Crites
+  CopyrightLink: https://www.linkedin.com/in/zachary-crites/
+  CC_BY_License: true
+
+  License:
+  LicenseLink:
+
+
+imaging:
+  exif:
+    disableDate: true
+    disableLatLong: true
+    includeFields: ""
+
+
+menu:
+  main:
+    - identifier: about
+      name: about
+      url: /about/
+      weight: 10
+    - identifier: tags
+      name: tags
+      url: /tags/
+      weight: 20
+    - identifier: series
+      name: series
+      url: /series/
+      weight: 30
+    - identifier: photos
+      name: photos
+      url: /photos/
+      weight: 40
+    - identifier: search
+      name: search
+      url: https://www.google.com/search?q=functional+programming+site%3Azaccrites.com
+      weight: 50
+
+outputs:
+  home:
+    - HTML
+    # - RSS
+    # - JSON

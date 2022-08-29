@@ -1,0 +1,12 @@
+{{ define "main" }}
+<main>
+    <h1 class="display-4"><i class="fa-solid fa-tag"></i> {{ .Title | humanize | title }}</h1>
+    {{ .Content }}
+    <p class="lead">{{ len .Pages }} result{{ if ne (len .Pages) 1 }}s{{ end }}</p>
+
+    {{ range .Pages }}
+    {{ .Render "summary" }}
+    {{ end }}
+
+</main>
+{{ end }}

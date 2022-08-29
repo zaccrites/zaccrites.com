@@ -1,0 +1,72 @@
+{{- $source := .Get "source" -}}
+{{- $sourceLink := .Get "link" -}}
+{{- $sourceStyle := "none" }}
+{{- if .Get "style" }}
+{{- $sourceStyle = .Get "style" }}
+{{- end }}
+
+{{- $subsource := .Get "subsource" -}}
+{{- $subsourceLink := .Get "subsourceLink"}}
+{{- $subsourceStyle := "none" }}
+{{- if .Get "subsourceStyle" }}
+{{- $subsourceStyle = .Get "subsourceStyle" }}
+{{- end }}
+
+
+<blockquote class="blockquote">
+
+<div class="container">
+    <div class="row">
+        <div class="col-1" style="width: 2.5%">
+            <i class="fa-solid fa-quote-left"></i>
+        </div>
+        <div class="col-11">
+            {{- $paragraphs := split (trim .Inner "\n\\") "\n\n" }}
+            {{- range $paragraphs }}
+            <p>
+            {{- $lines := split . "\\\n"}}
+            {{- range $index, $line := $lines }}
+            {{ $line | markdownify }}{{ if lt (add $index 1) (len $lines) }}<br>{{ end }}
+            {{- end }}
+            </p>
+            {{- end }}
+        </div>
+    </div>
+
+    {{- if $source }}
+    <div class="row">
+    <footer class="blockquote-footer">
+
+        {{- if $subsource }}
+        {{- if $subsourceLink }}<a href="{{ $subsourceLink }}">{{- end -}}
+        {{- if eq $subsourceStyle "em" -}}
+            <em>{{- $subsource }}</em>
+        {{- else if eq $subsourceStyle "strong" -}}
+            <strong>{{ $subsource }}</strong>
+        {{- else if eq $subsourceStyle "quote" -}}
+            "{{ $subsource }}"
+        {{- else -}}
+            {{ $subsource }}
+        {{- end -}}
+        {{- if $subsourceLink }}</a>{{ end }},
+        {{- end }}
+
+        {{ if $sourceLink }}<a href="{{ $sourceLink }}">{{- end -}}
+        {{- if eq $sourceStyle "em" -}}
+            <em>{{- $source }}</em>
+        {{- else if eq $sourceStyle "strong" -}}
+            <strong>{{ $source }}</strong>
+        {{- else if eq $sourceStyle "quote" -}}
+            "{{ $source }}"
+        {{- else -}}
+            {{ $source }}
+        {{- end -}}
+        {{- if $sourceLink }}</a>{{ end }}
+    </footer>
+    </div>
+    {{ end -}}
+</div>
+
+
+
+</blockquote>

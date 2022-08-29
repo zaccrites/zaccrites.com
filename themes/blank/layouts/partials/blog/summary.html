@@ -1,0 +1,18 @@
+<article class="post-summary">
+    <div class="row border rounded bg-light p-3 pb-0 my-3">
+        <div class="md-col-10 sm-col-12">
+            <h2>
+                <a class="text-decoration-none" href="{{ .Permalink }}">{{ .Title | markdownify }}</a>
+                {{ partials "common/draft.html" . }}
+            </h2>
+            {{- if .Description }}
+            <p class="mb-2">{{ .Description | markdownify }}</p>
+            {{- end }}
+
+            {{ with .Params.Tags }}
+            {{ partial "common/tag_list.html" }}
+            {{ end }}
+            <p>{{ partial "blog/post_date_and_info.html" }}</p>
+        </div>
+    </div>
+</article>

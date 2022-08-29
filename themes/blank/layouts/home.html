@@ -1,0 +1,66 @@
+{{ define "main" }}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="home-icons">
+            {{- range .Site.Params.HomeIcons }}
+            <div class="home-icon">
+                {{- if .Title }}<span title="{{ .Title }}">{{ end }}
+                {{- if .Link }}<a href="{{ .Link }}">{{ end }}
+                <i class="{{ .Icon }}"></i>
+                {{- if .Link }}</a>{{ end }}
+                {{- if .Title }}</span>{{ end }}
+            </div>
+            {{- end }}
+        </div>
+    </div>
+</div>
+<hr class="mb-2">
+
+<div class="row">
+    <div class="col-xl-3 col-md-3 col-sm-12">
+        <div class="site-home-picture">
+            <a href="/about">
+                <img class="img-fluid" src="{{ .Site.Params.SiteHomePicture }}" alt="">
+            </a>
+        </div>
+    </div>
+    <div class="col-xl-9 col-md-9 col-sm-12">
+        <h1 class="display-1">{{- if .Site.Params.HomePageTitle }}{{ .Site.Params.HomePageTitle }}{{ else }}{{ .Title }}{{ end }}</h1>
+        {{ with .Site.Params.HomePageDescription }}<p class="display-6">{{ . }}</p>{{ end }}
+    </div>
+</div>
+
+<div class="row site-home-location-social-bar mt-1">
+    <div class="col-12">
+        <ul class="list-group list-group-horizontal">
+            <li class="list-group-item flex-fill ps-0 border-0">
+                {{- if .Site.Params.HomePageLocation }}
+                <div class="site-home-location">
+                    <div>
+                        {{- with .Site.Params.HomePageLocationIcon }}
+                        <i class="{{ . }} site-home-location-icon"></i>
+                        {{- end }}
+                        <span>{{ .Site.Params.HomePageLocation }}</span>
+                    </div>
+                </div>
+                {{- end }}
+            </li>
+            {{- if .Site.Params.HomePageSocialIcons }}
+                {{- range .Site.Params.HomePageSocialIcons }}
+                <li class="list-group-item border-0">
+                <a class="text-decoration-none" href="{{ .Link }}" {{ with .Title }}title="{{ . }}"{{ end }}>
+                    <i class="{{ .Icon }} social-icon"></i>
+                </a>
+                </li>
+                {{- end }}
+            {{- end }}
+        </ul>
+    </div>
+</div>
+
+{{ range (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
+{{ .Render "summary" }}
+{{ end }}
+
+{{ end }}

@@ -1,0 +1,31 @@
+{{ define "main" }}
+<main>
+    <h1 class="display-4"><i class="fa-solid fa-bars"></i> {{ .Title }}</h1>
+    <p class="lead">{{ .Description }}</p>
+    {{ .Content }}
+
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Article Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ range .Pages }}
+                    <tr>
+                        <td><a href="{{ .Permalink }}">{{ .Title }}</a></td>
+                        <td>{{ .Description }}</td>
+                        <td>{{ len .Pages }}</td>
+                    </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</main>
+{{ end }}

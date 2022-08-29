@@ -1,0 +1,13 @@
+{{ define "main" }}
+<main>
+    <div class="row">
+        {{ partial "common/breadcrumbs.html" . }}
+    </div>
+    <h1 class="display-4 mb-0">{{ .Title }}</h1>
+    <p class="lead">{{ len .Pages }} {{ default "photos" .Params.Contents }}</p>
+    {{ .Content }}
+    {{ range .Pages }}
+        {{ .Render "summary" }}
+    {{ end }}
+</main>
+{{ end }}

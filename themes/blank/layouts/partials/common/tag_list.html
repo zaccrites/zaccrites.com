@@ -1,0 +1,8 @@
+<ul class="list-group list-group-horizontal mb-1">
+{{- range . }}
+    <li class="list-group-item bg-transparent border-0 ps-0 pe-2">
+        <i class="fa-solid fa-tag"></i>
+        <a class="text-decoration-none" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+    </li>
+{{- end }}
+</ul>

@@ -1,0 +1,26 @@
+{{ define "main" }}
+<main>
+    <h1 class="display-4"><i class="fa-solid fa-tags"></i> {{ .Title }}</h1>
+    <p class="lead">{{ len .Pages }} tag{{ if ne (len .Pages) 1}}s{{ end }}</p>
+    {{ .Content }}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Article Count</th>
+            </tr>
+        </thead>
+        <tbody>
+        {{ range .Pages }}
+            <tr>
+                <td><a href="{{ .Permalink }}">{{ .Title }}</a></td>
+                <td>{{ len .Pages }}</td>
+            </tr>
+        {{ end }}
+        </tbody>
+    </table>
+
+
+</main>
+{{ end }}
